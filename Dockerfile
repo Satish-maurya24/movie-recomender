@@ -8,6 +8,6 @@ COPY . /app
 
 # Install the application dependencies
 RUN pip install -r requirements.txt
-EXPOSE 8501
+EXPOSE 80
 # Define the entry point for the container
 CMD ["streamlit", "run", "streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
