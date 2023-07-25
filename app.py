@@ -36,17 +36,26 @@ def recommend(movie):
     movie_index = movies[movies['title']==movie].index[0]
     distances = similarity[movie_index]
     movies_list = sorted(list(enumerate(distances)),reverse=True , key = lambda x:x[1])[1:6]
+
     recommend_movie = []
     recommended_movies_poster = []
+
+
     for i in movies_list:
+
         movie_id = movies.iloc[i[0]].id
         recommended_movies_poster.append(fetch_image(movie_id))
 
         recommend_movie.append(movies.iloc[i[0]].title)
+    recommend_movie.append(movie)
+    recommended_movies_poster.append(fetch_image(movies.iloc[movie_index][0]))
     return recommend_movie,recommended_movies_poster
 if st.button('Recommend'):
     names,poster =  recommend(selected_movie_name)
-    col1,col2,col3,col4,col5 = st.columns(5)
+    col6 , col1,col2,col3,col4,col5 = st.columns(6)
+    with col6:
+        st.text(names[5])
+        st.image(poster[5])
     with col1:
         st.text(names[0])
         st.image(poster[0])
@@ -62,5 +71,5 @@ if st.button('Recommend'):
     with col5:
         st.text(names[4])
         st.image(poster[4])
-    # st.image(poster[0])
+
 
