@@ -2,7 +2,7 @@ import streamlit as st
 import pickle
 import pandas as pd
 import requests
-st.title("Movie Recomendation System")
+st.title("Movie Recommendation System")
 
 movie_dict = pickle.load(open('movie_dict.pkl','rb'))
 movies  = pd.DataFrame(movie_dict)
